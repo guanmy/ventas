@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Ventas</string>
+
+    <string name="app_full_name">FREE MOBILE UI KIT</string>
+    <string name="app_description">DESIGNED FOR YOUR NEEDS</string>
+    <string name="copy_right">xxxxxxx</string>
 </resources>
