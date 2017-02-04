@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mAlbumViewPager;
     private TabLayout mAlbumInfoTabLayout;
     private ViewPager mAlbumInfoViewPager;
+    private RoundNavigationIndicator mPointIndicator;
     private List<Album> mAlbumList;
 
     @Override
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAlbumList = AlbumLab.get(this).getAlbumList();
+
+        mPointIndicator = (RoundNavigationIndicator)findViewById(R.id.point_indicator);
+        mPointIndicator.setLength(mAlbumList.size());
 
         mAlbumViewPager = (ViewPager)findViewById(R.id.album_view_pager);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -39,6 +43,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public int getCount() {
                 return mAlbumList.size();
+            }
+        });
+        // TODO: 可能要调用removeOnPageChangeListener()取消注册
+        mAlbumViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                mPointIndicator.setSelected(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
         });
 
