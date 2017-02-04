@@ -35,21 +35,22 @@ public class MainActivity extends AppCompatActivity {
         mAlbumViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
             public Fragment getItem(int position) {
-                Album album = mAlbumList.get(position);
+                Album album = mAlbumList.get(position % mAlbumList.size());
                 AlbumCoverFragment fragment = AlbumCoverFragment.newInstance(album.getId());
                 return fragment;
             }
 
             @Override
             public int getCount() {
-                return mAlbumList.size();
+                //return mAlbumList.size();
+                return Integer.MAX_VALUE;
             }
         });
         // TODO: 可能要调用removeOnPageChangeListener()取消注册
         mAlbumViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                mPointIndicator.setSelected(position);
+                mPointIndicator.setSelected(position % mAlbumList.size());
             }
 
             @Override
